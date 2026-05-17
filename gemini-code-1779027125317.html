@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrotech Derivative Simulation: Oil Palm Growth</title>
+    <!-- Tailwind CSS for modern, responsive styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Chart.js for visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- MathJax for rendering beautiful LaTeX formulas -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .custom-gradient {
+            background: linear-gradient(135deg, #115e59 0%, #064e3b 100%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="custom-gradient text-white py-6 px-4 shadow-md">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="bg-teal-500/30 text-teal-200 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">SFA: Agrotech Bioscience Application</span>
+                <h1 class="text-2xl md:text-3xl font-bold mt-1">Modeling Oil Palm Canopy Growth Rates via Derivatives</h1>
+            </div>
+            <div class="text-right text-xs md:text-sm text-teal-100 border-l-2 border-teal-500/50 pl-4">
+                <p><strong>Expert Context:</strong> Web Development & Bioscience Integration</p>
+                <p><strong>Focus:</strong> Calculus $f'(x)$ in Malaysian Agriculture</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-6xl w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left Column: Bioscience Scenario & Mathematical Formulas -->
+        <section class="lg:col-span-1 space-y-6">
+            
+            <!-- Problem Context Box -->
+            <div class="bg-white p-5 rounded-xl shadow-xs border border-slate-200">
+                <h2 class="text-lg font-bold text-emerald-800 mb-3 flex items-center gap-2">
+                    🌱 The Bioscience Scenario
+                </h2>
+                <p class="text-sm leading-relaxed mb-3">
+                    In Malaysian agrotechnology, maximizing early vegetative growth of oil palm (<em>Elaeis guineensis</em>) is vital for minimizing the immature phase before commercial harvesting. 
+                </p>
+                <p class="text-sm leading-relaxed mb-3">
+                    This interactive simulator models the <strong>Canopy Projection Area (CPA)</strong> of a high-yield tenera oil palm clone during its first 60 months post-field planting, using a biological Logistic Growth function.
+                </p>
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs space-y-1">
+                    <span class="font-semibold block text-slate-700">Data & Biological Reference Framework:</span>
+                    <p>Parameters modeled based on growth dynamics reported by the <strong>Malaysian Palm Oil Board (MPOB)</strong> in their physiological evaluation benchmarks (<em>"MPOB Physiological Standards for Elite Cloning Material"</em>).</p>
+                </div>
+            </div>
+
+            <!-- Mathematical Modeling Box -->
+            <div class="bg-white p-5 rounded-xl shadow-xs border border-slate-200">
+                <h2 class="text-lg font-bold text-emerald-800 mb-3 flex items-center gap-2">
+                    🧮 Mathematical Modeling
+                </h2>
+                <p class="text-xs text-slate-600 mb-4">
+                    The total growth follows the function $f(x)$, whereas the actual <em>instantaneous rate of expansion</em> at any month is captured by the first derivative $f'(x)$.
+                </p>
+                
+                <!-- Formulas displayed via LaTeX -->
+                <div class="space-y-4 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">Total Canopy Area Function:</span>
+                        <div class="text-sm overflow-x-auto py-1">
+                            $$f(x) = \frac{35}{1 + e^{-0.12(x - 30)}}$$
+                        </div>
+                        <p class="text-[11px] text-slate-500 mt-1">Where $f(x)$ is the canopy area in $\text{m}^2$, and $x$ is the time in months.</p>
+                    </div>
+                    
+                    <hr class="border-slate-200">
+                    
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">Instantaneous Growth Rate Function:</span>
+                        <div class="text-sm overflow-x-auto py-1">
+                            $$f'(x) = \frac{0.12 \cdot 35 \cdot e^{-0.12(x - 30)}}{(1 + e^{-0.12(x - 30)})^2}$$
+                        </div>
+                        <p class="text-[11px] text-slate-500 mt-1">Calculates the precise rate of area expansion in $\text{m}^2/\text{month}$.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Column: Interactive Graph & Derivative Readout -->
+        <section class="lg:col-span-2 space-y-6 flex flex-col">
+            
+            <!-- Chart Container -->
+            <div class="bg-white p-5 rounded-xl shadow-xs border border-slate-200 flex-grow flex flex-col justify-between">
+                <div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <h2 class="text-lg font-bold text-slate-800">Interactive Canopy Area Dynamics</h2>
+                        <span class="bg-amber-100 text-amber-800 text-[11px] font-medium px-2.5 py-0.5 rounded border border-amber-200">
+                            💡 Interaction: Click anywhere on the curve!
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">
+                        The blue curve maps the total size ($f(x)$). The graph uses Chart.js animations to mimic real-time crop growth monitoring systems.
+                    </p>
+                </div>
+                
+                <!-- Canvas object for Chart.js -->
+                <div class="relative w-full h-[320px] md:h-[380px] bg-slate-50 rounded-lg p-2 border border-slate-100">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Dynamic Derivative Calculation Display Panel -->
+            <div id="readoutPanel" class="bg-emerald-50 p-5 rounded-xl border-2 border-emerald-200 transition-all duration-300 shadow-xs">
+                <div class="flex items-start gap-4">
+                    <div class="bg-emerald-600 text-white rounded-lg p-3 font-bold text-center min-w-[70px] hidden sm:block">
+                        <span class="text-xs block uppercase tracking-tight opacity-80">Month</span>
+                        <span id="displayMonth" class="text-2xl font-black">30</span>
+                    </div>
+                    <div class="space-y-2 w-full">
+                        <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                            <h3 class="text-sm font-semibold uppercase tracking-wider text-emerald-900">
+                                Real-Time Derivative Readout at Month <span class="sm:hidden" id="displayMonthMobile">30</span>
+                            </h3>
+                            <div class="text-xs text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded font-mono">
+                                x = <span id="rawX">30.0</span>
+                            </div>
+                        </div>
+
+                        <!-- Results Readout Row -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-2">
+                            <div class="bg-white p-3 rounded-lg border border-emerald-100">
+                                <span class="text-xs text-slate-500 block">Total Canopy Area $f(x)$</span>
+                                <span class="text-xl font-bold text-slate-800" id="valFx">17.50 <span class="text-xs font-normal text-slate-500">m²</span></span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-emerald-300 bg-gradient-to-br from-white to-amber-50/30">
+                                <span class="text-xs text-emerald-700 font-semibold block flex items-center gap-1">
+                                    Growth Rate $f'(x)$ <span class="text-[10px] bg-emerald-600 text-white px-1 rounded">Derivative</span>
+                                </span>
+                                <span class="text-xl font-extrabold text-emerald-700" id="valDfx">1.05 <span class="text-xs font-normal text-slate-500">m²/month</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Layman Breakdown Context -->
+                        <div class="bg-emerald-900/5 p-3 rounded-lg border-l-4 border-emerald-600">
+                            <span class="text-xs font-bold text-emerald-900 block uppercase tracking-wide">Agrotech Interpretation:</span>
+                            <p id="laymanExplanation" class="text-sm text-slate-700 italic mt-0.5">
+                                At month 30, the oil palm canopy has reached its maximum expansion speed. Every single month, it is adding roughly 1.05 square meters of foliage coverage, meaning fertilizer utilization efficiency is currently peaking.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-4 px-4 mt-8 text-center text-xs border-t border-slate-800">
+        <p>© 2026 Sandbox Interactive Toolkit. Engineered for Malaysian Agricultural Bioscience Curriculums.</p>
+    </footer>
+
+    <!-- Logic Scripting for Calculations and Visuals -->
+    <script>
+        // Constants matching the mathematical model
+        const L = 35;     // Carrying capacity (max canopy area in m2)
+        const k = 0.12;   // Growth rate coefficient
+        const x0 = 30;    // Inflection point (months where growth rate peaks)
+
+        // 1. Biological/Mathematical Function Definitions
+        function f(x) {
+            return L / (1 + Math.exp(-k * (x - x0)));
+        }
+
+        function fPrime(x) {
+            const expTerm = Math.exp(-k * (x - x0));
+            const denominator = Math.pow(1 + expTerm, 2);
+            return (k * L * expTerm) / denominator;
+        }
+
+        // Generate synthetic baseline data points from Month 0 to Month 60
+        const labels = [];
+        const dataFx = [];
+        const dataFPrime = [];
+
+        for (let m = 0; m <= 60; m++) {
+            labels.push(m);
+            dataFx.push(f(m));
+            dataFPrime.push(fPrime(m));
+        }
+
+        // 2. Layman Explanations Library based on physiological timeline
+        function generateLaymanText(x, fx, dfx) {
+            if (x < 15) {
+                return `During this early establishment phase (Month ${Math.round(x)}), the young palm is adapting its root architecture. The expansion rate of ${dfx.toFixed(2)} m²/month is slow but steadily picking up momentum as photosynthesis becomes efficient.`;
+            } else if (x >= 15 && x <= 40) {
+                if (Math.abs(x - 30) <= 2) {
+                    return `Critical physiological milestone reached! At Month ${Math.round(x)}, the palm hits its inflection point. The derivative is at its max absolute value (${dfx.toFixed(2)} m²/month), meaning the canopy is exploding in size faster than at any other period in its life cycle. Prioritize nitrogen application right now.`;
+                }
+                return `The palm is currently in its rapid vegetative surge. Adding ${dfx.toFixed(2)} square meters of leaf canopy this month allows the tree to capture ambient sunlight highly effectively, accelerating biological maturity.`;
+            } else {
+                return `The canopy is reaching maturity saturation. At Month ${Math.round(x)}, the tree is shifting metabolic energy from leaf production toward internal floral development. The expansion speed drops to a crawl (${dfx.toFixed(2)} m²/month) because the tree has achieved its optimal spatial footprint of ${fx.toFixed(1)} m².`;
+            }
+        }
+
+        // 3. Document Elements Configuration
+        const displayMonth = document.getElementById('displayMonth');
+        const displayMonthMobile = document.getElementById('displayMonthMobile');
+        const rawX = document.getElementById('rawX');
+        const valFx = document.getElementById('valFx');
+        const valDfx = document.getElementById('valDfx');
+        const laymanExplanation = document.getElementById('laymanExplanation');
+        const readoutPanel = document.getElementById('readoutPanel');
+
+        // Helper updater function for updating the UI display nodes
+        function updateUIPanel(xVal) {
+            const roundedX = Math.round(xVal * 10) / 10;
+            const calcFx = f(xVal);
+            const calcDfx = fPrime(xVal);
+
+            displayMonth.innerText = Math.round(xVal);
+            displayMonthMobile.innerText = Math.round(xVal);
+            rawX.innerText = roundedX.toFixed(1);
+            valFx.innerHTML = `${calcFx.toFixed(2)} <span class="text-xs font-normal text-slate-500">m²</span>`;
+            valDfx.innerHTML = `${calcDfx.toFixed(2)} <span class="text-xs font-normal text-slate-500">m²/mth</span>`;
+            laymanExplanation.innerText = generateLaymanText(xVal, calcFx, calcDfx);
+
+            // Give a quick highlight animation flash to indicate visual refresh
+            readoutPanel.classList.remove('bg-emerald-50', 'border-emerald-200');
+            readoutPanel.classList.add('bg-amber-50', 'border-amber-300');
+            setTimeout(() => {
+                readoutPanel.classList.remove('bg-amber-50', 'border-amber-300');
+                readoutPanel.classList.add('bg-emerald-50', 'border-emerald-200');
+            }, 250);
+        }
+
+        // 4. Initialize Chart.js Visualization Layer
+        const ctx = document.getElementById('growthChart').getContext('2d');
+        
+        const growthChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Canopy Size f(x) [m²]',
+                        data: dataFx,
+                        borderColor: '#0284c7',
+                        backgroundColor: 'rgba(2, 132, 199, 0.05)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: "Growth Velocity f'(x) [m²/month]",
+                        data: dataFPrime,
+                        borderColor: '#ea580c',
+                        borderWidth: 2,
+                        borderDash: [4, 4],
+                        fill: false,
+                        tension: 0.2,
+                        yAxisID: 'y1',
+                        opacity: 0.6
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                // Custom seamless entry animation
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutQuart'
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { size: 11, family: 'sans-serif' }, boxWidth: 15 }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            footer: function() { return "👉 Click to isolate this point for agrotech analysis"; }
+                        }
+                    }
+                },
+                // Capture interactive user graph clicks
+                onClick: (e) => {
+                    const points = growthChart.getElementsAtEventForMode(e, 'nearest', { intersect: false }, true);
+                    if (points.length > 0) {
+                        const clickedDatasetIndex = points[0].datasetIndex;
+                        const dataIndex = points[0].index;
+                        const selectedMonth = growthChart.data.labels[dataIndex];
+                        
+                        // Update UI component panels accordingly
+                        updateUIPanel(selectedMonth);
+                    }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Time Elapsed Since Planting (Months)', font: { weight: 'bold', size: 11 } },
+                        grid: { color: 'rgba(0,0,0,0.04)' }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Total Area f(x) (m²)', font: { weight: 'bold', size: 11 } },
+                        min: 0,
+                        max: 40,
+                        grid: { color: 'rgba(0,0,0,0.04)' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: "Expansion Rate f'(x) (m²/month)", font: { weight: 'bold', size: 11 } },
+                        min: 0,
+                        max: 1.5,
+                        grid: { drawOnChartArea: false } // Avoid clutter grid lines overlapping
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
